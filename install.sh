@@ -1,37 +1,72 @@
 #!/bin/bash
 
+function isargv
+{
+    for arg in $ARGV
+    do
+        if [ $arg == $1 ]
+        then
+            return 0
+        fi
+    done
+    return 1
+}
+
 function error
 {
-    dialog            \
-        --msgbox "$1" \
-        0 0
-    clear
+    echo "ERRO: $1"
     exit 1
 }
 
-function warning
+function download_vim
 {
-    dialog                                                                     \
-        --msgbox "This installation script will remove your atual .vimrc file" \
-        0 0
+    hg clone https://vim.googlecode.com/hg/ vim
     if [ $? != 0 ]
     then
-        error "Installation stopped by you"
+        error "An error occurred while downloading vim source"
     fi
+}
+
+function update_vim
+{
+    cd vim
+    hg pull
+    if [ $? != 0 ]
+    then
+        error "An error occurred while updating vim repository"
+    fi
+    hg update
+    if [ $? != 0 ]
+    then
+        error "An error occurred while updating vim repository"
+    fi
+    cd ..
+}
+
+function install_vim
+{
+    cd vim
+    ./configure --enable-pythoninterp --enable-rubyinterp
+    if [ $? != 0 ]
+    then
+        error "An error occurred while installing vim"
+    fi
+    make
+    if [ $? != 0 ]
+    then
+        error "An error occurred while installing vim"
+    fi
+    cd ..
 }
 
 function git_submodules
 {
-    dialog                                  \
-        --title "GIT Submodules"            \
-        --infobox "Initializing submodules" \
-        0 0
-    git submodule init > /dev/null
+    git submodule init
     if [ $? != 0 ]
     then
         error "An error occurred while trying init submodules"
     fi
-    git submodule update > /dev/null
+    git submodule update
     if [ $? != 0 ]
     then
         error "An error occurred while trying update submodules"
@@ -40,20 +75,6 @@ function git_submodules
 
 function copy_important_files
 {
-    dialog                                  \
-        --title "File copy"                 \
-        --infobox "Copying important files" \
-        0 0
-    if [ -f $HOME/.vimrc ]; then rm $HOME/.vimrc; fi
-    if [ $? != 0 ]
-    then
-        error "Can't remove .vimrc file"
-    fi
-    cp vimrc.vim $HOME/.vimrc
-    if [ $? != 0 ]
-    then
-        error "Can't create .vimrc file"
-    fi
     if [ -d $HOME/.vimutopia ]; then rm -Rf $HOME/.vimutopia; fi
     if [ $? != 0 ]
     then
@@ -63,6 +84,29 @@ function copy_important_files
     if [ $? != 0 ]
     then
         error "Can't create .vimutopia folder"
+    fi
+    cp vimrc.vim $HOME/.vimutopia
+    if [ $? != 0 ]
+    then
+        error "Can't copy vimrc file"
+    fi
+    cp -R vim $HOME/.vimutopia
+    if [ $? != 0 ]
+    then
+        error "Can't copy vim folder"
+    fi
+    if [ ! -d $HOME/bin ]; then mkdir $HOME/bin; fi
+    if [ $? != 0 ]
+    then
+        error "Can't create bin folder"
+    fi
+    if [ ! -f $HOME/bin/vimu ]
+    then
+        ln -s $HOME/.vimutopia/vim/src/vim $HOME/bin/vimu
+        if [ $? != 0 ]
+        then
+            error "Can't create symbolic link to vimu"
+        fi
     fi
     mkdir $HOME/.vimutopia/scripts
     if [ $? != 0 ]
@@ -79,46 +123,20 @@ function copy_important_files
     then
         error "Can't copy a script"
     fi
-    if [ ! -d $HOME/.vim ]
-    then
-        mkdir $HOME/.vim
-        if [ $? != 0 ]
-        then
-            error "Can't create .vim directory"
-        fi
-    fi
-    cp -R autoload $HOME/.vim/autoload
+    cp -R autoload $HOME/.vimutopia/autoload
     if [ $? != 0 ]
     then
         error "Can't copy autoload folder"
     fi
-    cp -R bundle $HOME/.vim/bundle
+    cp -R bundle $HOME/.vimutopia/bundle
     if [ $? != 0 ]
     then
         error "Can't copy bundle folder"
     fi
 }
 
-function select_packages
-{
-    packages=$(dialog --stdout --separate-output                                               \
-                   --title "vimutopia"                                                         \
-                   --checklist "Select the vimrc packages and dependencies to install"   0 0 0 \
-                   Python "Pip, Ipython, Spcloud, Should_dsl, Python-dev"                   ON \
-                   C "gcc, igcc"                                                            ON \
-              )
-    if [ $? != 0 ]
-    then
-        error "Installation stopped by you"
-    fi
-}
-
 function install_python_dependencies
 {
-    dialog                                         \
-        --title "Package installation"             \
-        --infobox "Installing python dependencies" \
-        0 0
     cp src/vimrc-py.vim $HOME/.vimutopia/vimrc-py.vim
     if [ $? != 0 ]
     then
@@ -143,11 +161,7 @@ function install_python_dependencies
 
 function install_c_dependencies
 {
-    dialog                                    \
-        --title "Package installation"        \
-        --infobox "Installing C dependencies" \
-        0 0
-    wget "http://downloads.sourceforge.net/project/igcc/igcc-0.1.tar.bz2" --quiet
+    wget "http://downloads.sourceforge.net/project/igcc/igcc-0.1.tar.bz2"
     if [ $? != 0 ]
     then
         error "An error occurred during download of igcc"
@@ -199,22 +213,27 @@ function install_specific_dependencies
     done
 }
 
-function finished
-{
-    dialog --title "Warning"               \
-        --msgbox "Instalation finished!" \
-        0 0
-    clear
-}
-
 function main
 {
-    warning
+    if [ ! -d vim ]
+    then
+        download_vim
+    fi
+    if ! isargv "--no-update-vim"
+    then
+        update_vim
+    fi
+    install_vim
     git_submodules
     copy_important_files
-    select_packages
+    if isargv "--no-c"
+    then
+        packages="Python"
+    else
+        packages="Python C"
+    fi
     install_specific_dependencies
-    finished
 }
 
+ARGV=$*
 main
