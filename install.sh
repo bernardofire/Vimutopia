@@ -46,7 +46,7 @@ function update_vim
 function install_vim
 {
     cd vim
-    ./configure --enable-pythoninterp --enable-rubyinterp
+    ./configure --enable-mzschemeinterp --enable-pythoninterp --enable-python3interp --enable-tclinterp --enable-rubyinterp --enable-cscope --enable-sniff --enable-multibyte --enable-hangulinput --enable-fontset
     if [ $? != 0 ]
     then
         error "An error occurred while installing vim"
