@@ -24,7 +24,7 @@ set mouse=a     " Use the mouse
 set backspace=2 " Activate backspace to delete characters
 set ruler       " Show cursos location all the time
 set cursorline  " Line idicating the cursor location
-set pastetoggle=<F2>    " Paste from clipboard, with original indentation. Press F2 and paste
+set pastetoggle=<F3>    " Paste from clipboard, with original indentation. Press F2 and paste
 
 " Show markup characters
 set list

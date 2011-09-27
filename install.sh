@@ -112,6 +112,7 @@ function select_packages
                    --checklist "Select the vimrc packages and dependencies to install"   0 0 0 \
                    Python "Pip, Ipython, Spcloud, Should_dsl, Python-dev"                   ON \
                    C "gcc, igcc"                                                            ON \
+                   LaTeX ""                                                                 ON \
               )
     if [ $? != 0 ]
     then
@@ -190,6 +191,24 @@ function install_c_dependencies
     fi
 }
 
+function install_tex_dependencies
+{
+    dialog                                        \
+        --title "Package installation"            \
+        --infobox "Installing LaTeX dependencies" \
+        0 0
+    cp src/vimrc-tex.vim $HOME/.vimutopia/vimrc-tex.vim
+    if [ $? != 0 ]
+    then
+        error "Can't copy a script"
+    fi
+    echo "autocmd BufNewFile,BufRead *.tex source $HOME/.vimutopia/vimrc-tex.vim" >> $HOME/.vimrc
+    if [ $? != 0 ]
+    then
+        error "Can't append line in .vimrc file"
+    fi
+}
+
 function install_specific_dependencies
 {
     for package in $packages
@@ -201,6 +220,10 @@ function install_specific_dependencies
         if [ $package == "C" ]
         then
             install_c_dependencies
+        fi
+        if [ $package == "LaTeX" ]
+        then
+            install_tex_dependencies
         fi
     done
 }
