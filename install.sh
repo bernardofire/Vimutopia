@@ -110,7 +110,7 @@ function select_packages
     packages=$(dialog --stdout --separate-output                                               \
                    --title "vimutopia"                                                         \
                    --checklist "Select the vimrc packages and dependencies to install"   0 0 0 \
-                   Python "Pip, Ipython, Spcloud, Should_dsl, Python-dev"                   ON \
+                   Python "Pip, Ipython, Spcloud, Should_dsl"                               ON \
                    C "gcc, igcc"                                                            ON \
                    LaTeX ""                                                                 ON \
               )
