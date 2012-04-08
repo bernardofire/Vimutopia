@@ -28,7 +28,7 @@ set pastetoggle=<F3>    " Paste from clipboard, with original indentation. Press
 
 " Show markup characters
 set list
-set listchars=eol:¬,trail:▸,tab:\ \ 
+set listchars=eol:¬,trail:▸,tab:\ \
 
 " Set statusline configurations
 set laststatus=2   " Show statusbar with 2 lines
@@ -82,17 +82,14 @@ if has("python")
 endif
 
 " Open a new tab
-imap <C-t> <ESC> :tabnew 
-nnoremap <C-t>     :tabnew 
+imap <C-t> <ESC> :tabnew
+nnoremap <C-t>     :tabnew
 
 " Move between tabs
 imap <C-Right> <ESC>:tabnext<CR>a
 imap <C-Left> <ESC>:tabprevious<CR>a
 nnoremap <C-Right> :tabnext<CR>
 nnoremap <C-Left>  :tabprevious<CR>
-
-" Undo
-imap <C-z> <ESC>ua
 
 " NerdTree
 nmap <F2> :NERDTreeToggle<CR>
