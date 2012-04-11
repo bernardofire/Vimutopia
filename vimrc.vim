@@ -1,6 +1,6 @@
 " Vundle
 "   Better Management of VIM plugins
-set rtp+=~/.vim/bundle/vundle/
+set rtp+=./bundle/vundle/
 call vundle#rc()
 
 " Set colorscheme
@@ -30,14 +30,6 @@ set pastetoggle=<F3>    " Paste from clipboard, with original indentation. Press
 " Show markup characters
 set list
 set listchars=eol:¬,trail:▸,tab:\ \
-
-" Set statusline configurations
-set laststatus=2   " Show statusbar with 2 lines
-"set statusline=%<%f\    " Filename
-set statusline+=\ Lang=[%Y]   " File Language
-"set statusline+=\ [%{getcwd()}]   " Current dir
-"set statusline+=\ [A=\%03.3b/Hex=\%02.2B]  " ASCII / Hexadecimal value of char
-set statusline+=%=%-14.(%l,%c%V%)\ %p%%   " Right aligned file nav info
 
 " Dynamic search
 set incsearch
