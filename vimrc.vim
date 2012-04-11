@@ -91,4 +91,19 @@ nnoremap <C-Left>  :tabprevious<CR>
 nmap <F2> :NERDTreeToggle<CR>
 imap <F2> <Esc>:NERDTreeToggle<CR>a
 
-" Vimrcs to specific file types [added dynamically]
+" Remove trailling spaces
+function! <SID>StripTrailingWhitespaces()
+  " Preparation: save last search, and cursor position.
+  let _s=@/
+  let l = line(".")
+  let c = col(".")
+  " Do the business:
+  %s/\s\+$//e
+  " Clean up: restore previous search history, and cursor position
+  let @/=_s
+  call cursor(l, c)
+endfunction
+autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
+
+" change tabs for spaces when the file is saved
+autocmd BufWritePre * :retab
