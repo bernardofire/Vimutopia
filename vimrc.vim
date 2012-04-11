@@ -49,14 +49,6 @@ exec open(os.path.join(os.environ["HOME"], ".vimutopia", "scripts", "generic.py"
 EOF
 endif
 
-" >> Aliases <<
-
-" Drag Line
-nmap <C-down> ddp
-imap <C-down> <ESC> ddp a
-nmap <C-up> ddkP
-imap <C-up> <ESC> ddkP a
-
 " Allow :W and :Q
 cab W w
 cab Q q
@@ -81,9 +73,13 @@ if has("python")
     imap <TAB> <ESC>:python auto_complete()<CR>a
 endif
 
-" Open a new tab
+" Tab manager shortcuts
 imap <C-t> <ESC> :tabnew
-nnoremap <C-t>     :tabnew
+nnoremap <C-t>   :tabnew
+map <leader>tn :tabnew<cr>¬
+map <leader>te :tabedit¬
+map <leader>tc :tabclose<cr>¬
+map <leader>tm :tabmove¬
 
 " Move between tabs
 imap <C-Right> <ESC>:tabnext<CR>a
