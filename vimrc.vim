@@ -1,6 +1,7 @@
-" Set pathogen plugin
-call pathogen#runtime_append_all_bundles()
-call pathogen#helptags()
+" Vundle
+"   Better Management of VIM plugins
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
 
 " Set colorscheme
 colorscheme desert
