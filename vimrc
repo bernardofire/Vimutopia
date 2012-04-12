@@ -1,7 +1,18 @@
+"===================
+"=     Plugins     =
+"===================
 " Vundle
 "   Better Management of VIM plugins
-set rtp+=./bundle/vundle/
+set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
+""" Vundle plugins:
+"" General
+Bundle 'gmarik/vundle'
+
+
+"===================
+"=    Settings     =
+"===================
 
 " Set colorscheme
 colorscheme desert
