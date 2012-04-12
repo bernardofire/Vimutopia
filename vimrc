@@ -8,6 +8,35 @@ call vundle#rc()
 """ Vundle plugins:
 "" General
 Bundle 'gmarik/vundle'
+Bundle 'ctrlp.vim'
+Bundle 'scrooloose/nerdtree'
+Bundle 'jistr/vim-nerdtree-tabs'
+Bundle 'xolox/vim-session'
+Bundle 'mileszs/ack.vim'
+Bundle 'Lokaltog/vim-powerline'
+Bundle 'MarcWeber/vim-addon-mw-utils'
+Bundle 'FuzzyFinder'
+Bundle 'L9'
+Bundle 'TaskList.vim'
+Bundle 'Syntastic'
+Bundle 'mattn/zencoding-vim'
+Bundle 'tomtom/tlib_vim'
+Bundle 'snipmate-snippets'
+Bundle 'garbas/vim-snipmate'
+"" Ruby
+Bundle 'tpope/vim-rails.git'
+Bundle 'skalnik/vim-vroom'
+"" Javascript
+Bundle 'pangloss/vim-javascript'
+Bundle 'jslint.vim'
+"To use jsbeautify: <leader> ff
+Bundle 'jsbeautify'
+" CoffeeScript
+Bundle 'kchmck/vim-coffee-script'
+Bundle 'coffee.vim'
+" Python
+Bundle 'pythonhelper'
+Bundle 'pyflakes.vim'
 
 
 "===================
