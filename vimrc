@@ -35,13 +35,6 @@ set listchars=eol:¬,trail:▸,tab:\ \
 set incsearch
 set hlsearch
 
-if has("python")
-python << EOF
-import os
-exec open(os.path.join(os.environ["HOME"], ".vimutopia", "scripts", "generic.py")).read()
-EOF
-endif
-
 " Allow :W and :Q
 cab W w
 cab Q q
@@ -53,18 +46,13 @@ au InsertEnter * hi StatusLine term=bold cterm=bold
 au InsertLeave * hi StatusLine term=bold,reverse cterm=bold,reverse
 
 " Reload .vimrc file (F12)
-map ,v :e $HOME/.vimrc /.vimutopia/vimrc-py.vim /.vimutopia/vimrc-c.vim<CR>
-nmap <F12> : <C-u>source ~/.vimrc<CR>: <C-u>source ~/.vimutopia/vimrc-py.vim<CR>: <C-u>source ~/.vimutopia/vimrc-c.vim<CR>: echo "VIM's files reloaded"<CR>
-imap <F12> <ESC>: <C-u>source ~/.vimrc<CR>: <C-u>source ~/.vimutopia/vimrc-py.vim<CR>: <C-u>source ~/.vimutopia/vimrc-c.vim<CR>a
+map ,v :e $HOME/.vimrc<CR>
+nmap <F12> : <C-u>source ~/.vimrc<CR>: echo "VIM's files reloaded"<CR>
+imap <F12> <ESC>: <C-u>source ~/.vimrc<CR>a
 
 " Hide search results
 imap <S-F11> <ESC>:let @/=""<CR>a
 nmap <S-F11> :let @/=""<CR>
-
-if has("python")
-    " Auto-complete words
-    imap <TAB> <ESC>:python auto_complete()<CR>a
-endif
 
 " Tab manager shortcuts
 imap <C-t> <ESC> :tabnew
