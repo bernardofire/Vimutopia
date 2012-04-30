@@ -39,6 +39,8 @@ Bundle 'pythonhelper'
 Bundle 'pyflakes.vim'
 
 "" Plugins Configs
+"Vundle
+let g:vundle_default_git_proto = 'git'
 "NERDTree-tabs
 "autocmd vimenter * NERDTreeTabsToggle "Opens NERDTree-tabs when vim starts
 autocmd vimenter * wincmd l "Focus on file instead focus NERDTree
@@ -89,10 +91,10 @@ set smartindent
 set shiftround
 set smartcase
 set smarttab
-set shiftwidth=4
-set softtabstop=4
-set showtabline=4
-set tabstop=4
+set shiftwidth=2
+set softtabstop=2
+set showtabline=2
+set tabstop=2
 set autoindent         " always set autoindent
 set matchpairs+=<:>    " show matching <>
 set pastetoggle=<F2>   " to paste from clipboard, with the original ident
