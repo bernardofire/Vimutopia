@@ -23,7 +23,7 @@ Bundle 'mattn/zencoding-vim'
 Bundle 'tomtom/tlib_vim'
 Bundle 'snipmate-snippets'
 Bundle 'garbas/vim-snipmate'
-Bundle 'Fortune-vimtips'
+Bundle 'matchindent.vim'
 "" Ruby
 Bundle 'tpope/vim-rails.git'
 Bundle 'skalnik/vim-vroom'
