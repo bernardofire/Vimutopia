@@ -1,0 +1,9 @@
+```
+git clone git@github.com:bernardofire/Vimutopia ~/.vim
+echo "source ~/.vim/vimrc" >> .vimrc
+cd ~/.vim
+git submodule init
+git submodule update
+# Enter vim and execute ":BundleInstall"
+# Restart Vim and it's done!
+```
