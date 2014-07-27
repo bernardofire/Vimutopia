@@ -171,12 +171,6 @@ endif
 imap <S-F11> <ESC>:let @/=""<CR>a
 nmap <S-F11> :let @/=""<CR>
 
-" Tab configuration
-map <leader>tn :tabnew<cr>
-map <leader>te :tabedit
-map <leader>tc :tabclose<cr>
-map <leader>tm :tabmove
-
 " Remove trailling spaces
 function! <SID>StripTrailingWhitespaces()
   " Preparation: save last search, and cursor position.
