@@ -135,9 +135,7 @@ cab Wq wq
 
 " Map tab creation and close (also for last tab) shortcuts
 nmap <C-t> :tabnew<CR>
-nmap <C-w> :q<CR>   " because <C-w>q will close it anyway
-nmap <silent><A-Right> :tabnext<CR>
-nmap <silent><A-Left> :tabprevious<CR>
+nmap <C-w> :q<CR>
 
 " Speed up buffer switching
  map <C-k> <C-W>k
