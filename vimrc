@@ -117,16 +117,6 @@ set confirm            " Yes/No/Cancel prompt if closing with unsaved changes
 "=+++++++++ Mapping +++++++++=
 "=============================
 
-" Tabs navigation
-" nmap <C-Tab> gt
-" nmap <C-S-Tab> gT
-
-" Don't use arrows, uncomment when you're ready!
-"map <up> <nop>
-"map <down> <nop>
-"map <left> <nop>
-"map <right> <nop>
-
 " Allow :wq upper case
 cab W w
 cab Q q
