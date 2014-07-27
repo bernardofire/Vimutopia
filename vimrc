@@ -25,6 +25,7 @@ Bundle 'garbas/vim-snipmate'
 Bundle 'matchindent.vim'
 Bundle 'vim-misc'
 "" Ruby
+Bundle 'vim-ruby/vim-ruby'
 Bundle 'tpope/vim-rails.git'
 Bundle 'skalnik/vim-vroom'
 "" Javascript
@@ -128,10 +129,10 @@ nmap <C-t> :tabnew<CR>
 nmap <C-w> :q<CR>
 
 " Speed up buffer switching
- map <C-k> <C-W>k
- map <C-j> <C-W>j
- map <C-h> <C-W>h
- map <C-l> <C-W>l
+map <C-k> <C-W>k
+map <C-j> <C-W>j
+map <C-h> <C-W>h
+map <C-l> <C-W>l
 
 " Change statusbar color in insert mode
 au InsertEnter * hi StatusLine term=bold cterm=bold
