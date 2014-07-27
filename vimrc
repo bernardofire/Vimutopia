@@ -19,11 +19,11 @@ Bundle 'FuzzyFinder'
 Bundle 'L9'
 Bundle 'TaskList.vim'
 Bundle 'Syntastic'
-Bundle 'mattn/zencoding-vim'
 Bundle 'tomtom/tlib_vim'
 Bundle 'snipmate-snippets'
 Bundle 'garbas/vim-snipmate'
 Bundle 'matchindent.vim'
+Bundle 'vim-misc'
 "" Ruby
 Bundle 'tpope/vim-rails.git'
 Bundle 'skalnik/vim-vroom'
@@ -40,6 +40,7 @@ Bundle 'pythonhelper'
 Bundle 'pyflakes.vim'
 
 "" Plugins Configs
+let g:session_autosave = 'no'
 "Vundle
 let g:vundle_default_git_proto = 'git'
 "NERDTree-tabs
@@ -57,8 +58,8 @@ let g:ackprg="ack-grep -H --nocolor --nogroup --column"
 set nocompatible
 
 " Set colorscheme
-colorscheme ir_black
-"colorscheme mango
+"colorscheme ir_black
+colorscheme mango
 
 " Setting VIMHOME
 let $VIMHOME = $HOME."/.vim"
@@ -134,7 +135,7 @@ cab Wq wq
 
 " Map tab creation and close (also for last tab) shortcuts
 nmap <C-t> :tabnew<CR>
-"nmap <C-w> :q<CR>   " because <C-w>q will close it anyway
+nmap <C-w> :q<CR>   " because <C-w>q will close it anyway
 nmap <silent><A-Right> :tabnext<CR>
 nmap <silent><A-Left> :tabprevious<CR>
 
